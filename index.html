@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Finder 🍽️</title>
+  <link rel="stylesheet" href="style.css" />
+  </head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🍽️</span>
+        <span class="logo-text">RecipeFinder</span>
+      </div>
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+        <span class="toggle-icon" id="toggleIcon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Discover<br /><em>Delicious</em> Recipes</h1>
+      <p class="hero-sub">Search, filter, and explore thousands of meals from around the world.</p>
+
+      <!-- SEARCH BAR -->
+      <div class="search-wrapper">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search for a recipe… e.g. Pasta, Chicken"
+          autocomplete="off"
+        />
+        <button class="search-btn" id="searchBtn">Search</button>
+      </div>
+    </div>
+    <div class="hero-blob"></div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section class="controls" id="controls">
+    <div class="controls-inner">
+
+      <!-- CATEGORY FILTER -->
+      <div class="control-group">
+        <label for="categoryFilter" class="control-label">Filter by Category</label>
+        <select id="categoryFilter" class="control-select">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+
+      <!-- SORT -->
+      <div class="control-group">
+        <label for="sortSelect" class="control-label">Sort</label>
+        <select id="sortSelect" class="control-select">
+          <option value="default">Default</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+        </select>
+      </div>
+
+      <!-- RESULTS COUNT -->
+      <div class="results-count" id="resultsCount"></div>
+
+    </div>
+  </section>
+
+  <!-- RECIPE GRID -->
+  <main class="main">
+    <div class="grid" id="recipeGrid">
+      <!-- Cards injected here -->
+    </div>
+
+    <!-- EMPTY / LOADING STATE -->
+    <div class="state-box" id="stateBox">
+      <div class="state-emoji" id="stateEmoji">🔍</div>
+      <p class="state-msg" id="stateMsg">Search for a recipe above to get started!</p>
+    </div>
+  </main>
+
+  <!-- MODAL OVERLAY -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-img-wrap">
+        <img src="" alt="" id="modalImg" class="modal-img" />
+        <div class="modal-category-tag" id="modalCategoryTag"></div>
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-meta" id="modalMeta"></div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">🧂 Ingredients</h3>
+          <ul class="ingredient-list" id="ingredientList"></ul>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">📋 Instructions</h3>
+          <p class="instructions-text" id="instructionsText"></p>
+        </div>
+
+        <a href="#" target="_blank" id="youtubeLink" class="youtube-btn" style="display:none;">
+          ▶ Watch on YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
