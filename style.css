@@ -1,11 +1,3 @@
-/* ============================================================
-   RECIPE FINDER — style.css
-   Aesthetic: Editorial / Culinary Magazine — warm cream + terracotta
-   NO CSS custom properties — all values are hardcoded directly.
-   Dark mode handled via [data-theme="dark"] selectors.
-   ============================================================ */
-
-/* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
@@ -25,7 +17,6 @@ body {
   color: #f5ede0;
 }
 
-/* ---------- Header ---------- */
 .header {
   position: sticky;
   top: 0;
@@ -92,7 +83,6 @@ body {
 
 .dark-toggle:hover { transform: rotate(20deg) scale(1.1); }
 
-/* ---------- Hero ---------- */
 .hero {
   position: relative;
   overflow: hidden;
@@ -145,7 +135,6 @@ body {
 
 [data-theme="dark"] .hero-sub { color: #9a8a74; }
 
-/* ---------- Search ---------- */
 .search-wrapper {
   display: flex;
   gap: 0;
@@ -195,7 +184,6 @@ body {
 .search-btn:hover { background: #b04d25; transform: scale(1.03); }
 .search-btn:active { transform: scale(0.98); }
 
-/* ---------- Controls ---------- */
 .controls {
   background: #f0ebe1;
   border-top: 1px solid #e2d9cc;
@@ -272,7 +260,6 @@ body {
 
 [data-theme="dark"] .results-count { color: #9a8a74; }
 
-/* ---------- Main / Grid ---------- */
 .main {
   max-width: 1200px;
   margin: 0 auto;
@@ -285,7 +272,6 @@ body {
   gap: 28px;
 }
 
-/* ---------- Recipe Card ---------- */
 .card {
   background: #ffffff;
   border-radius: 14px;
@@ -390,7 +376,6 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ---------- State Box ---------- */
 .state-box {
   display: flex;
   flex-direction: column;
@@ -414,7 +399,6 @@ body {
 
 [data-theme="dark"] .state-msg { color: #9a8a74; }
 
-/* ---------- Modal ---------- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -621,7 +605,6 @@ body {
 
 .youtube-btn:hover { background: #cc0000; transform: scale(1.03); }
 
-/* ---------- Back to Top ---------- */
 .back-to-top {
   position: fixed;
   bottom: 32px;
@@ -654,7 +637,6 @@ body {
 
 .back-to-top:hover { background: #b04d25; transform: translateY(-3px); }
 
-/* ---------- Loading Spinner ---------- */
 .spinner {
   width: 44px;
   height: 44px;
@@ -671,7 +653,6 @@ body {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 600px) {
   .hero { padding: 56px 16px 48px; }
   .hero-title { font-size: 2.2rem; }

@@ -1,20 +1,8 @@
-/**
- * Recipe Finder App — app.js
- * API: TheMealDB (https://www.themealdb.com/api.php)
- * Features: Search, Filter by Category, Sort A-Z/Z-A, Dark Mode, Recipe Modal
- */
-
-/* ============================================================
-   Constants & State
-   ============================================================ */
 const API_BASE = "https://www.themealdb.com/api/json/v1/1";
 
-let allMeals = []; // raw results from last search
-let filteredMeals = []; // after category filter + sort
+let allMeals = []; 
+let filteredMeals = []; 
 
-/* ============================================================
-   DOM References
-   ============================================================ */
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const categoryFilter = document.getElementById("categoryFilter");
@@ -30,9 +18,6 @@ const modalOverlay = document.getElementById("modalOverlay");
 const modalClose = document.getElementById("modalClose");
 const backToTop = document.getElementById("backToTop");
 
-/* ============================================================
-   Theme (Dark / Light)
-   ============================================================ */
 function initTheme() {
   const saved = localStorage.getItem("rf-theme") || "light";
   setTheme(saved);
@@ -49,9 +34,6 @@ darkToggle.addEventListener("click", () => {
   setTheme(current === "dark" ? "light" : "dark");
 });
 
-/* ============================================================
-   Fetch Helpers
-   ============================================================ */
 
 /** Search meals by name */
 async function fetchMealsByName(query) {
@@ -76,9 +58,6 @@ async function fetchCategories() {
   return data.categories || [];
 }
 
-/* ============================================================
-   Categories — populate filter dropdown
-   ============================================================ */
 async function loadCategories() {
   try {
     const categories = await fetchCategories();
@@ -93,9 +72,7 @@ async function loadCategories() {
   }
 }
 
-/* ============================================================
-   Search
-   ============================================================ */
+
 async function handleSearch() {
   const query = searchInput.value.trim();
   if (!query) return;
@@ -129,23 +106,18 @@ searchInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") handleSearch();
 });
 
-/* ============================================================
-   Filter & Sort — Higher Order Functions
-   ============================================================ */
 function applyFilterAndSort() {
   const category = categoryFilter.value;
   const sort = sortSelect.value;
 
-  // Filter using HOF: Array.filter
   filteredMeals = allMeals.filter((meal) =>
     category === "all" ? true : meal.strCategory === category,
   );
 
-  // Sort using HOF: Array.sort
   filteredMeals = filteredMeals.sort((a, b) => {
     if (sort === "az") return a.strMeal.localeCompare(b.strMeal);
     if (sort === "za") return b.strMeal.localeCompare(a.strMeal);
-    return 0; // default — preserve original order
+    return 0; 
   });
 
   renderCards(filteredMeals);
@@ -154,9 +126,6 @@ function applyFilterAndSort() {
 categoryFilter.addEventListener("change", applyFilterAndSort);
 sortSelect.addEventListener("change", applyFilterAndSort);
 
-/* ============================================================
-   Render Cards
-   ============================================================ */
 function renderCards(meals) {
   recipeGrid.innerHTML = "";
 
@@ -169,13 +138,11 @@ function renderCards(meals) {
   hideState();
   updateResultsCount(meals.length);
 
-  // Map using HOF: Array.map to create card HTML strings, then join & insert
   const cardsHTML = meals
     .map((meal, index) => createCardHTML(meal, index))
     .join("");
   recipeGrid.innerHTML = cardsHTML;
 
-  // Attach click events
   recipeGrid.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => openModal(card.dataset.id));
   });
@@ -201,11 +168,7 @@ function createCardHTML(meal, index) {
   `;
 }
 
-/* ============================================================
-   Modal
-   ============================================================ */
 async function openModal(id) {
-  // Show loading inside modal
   document.getElementById("modalTitle").textContent = "Loading…";
   document.getElementById("modalImg").src = "";
   document.getElementById("ingredientList").innerHTML = "";
@@ -227,19 +190,19 @@ async function openModal(id) {
 }
 
 function populateModal(meal) {
-  // Image
+  
   const img = document.getElementById("modalImg");
   img.src = meal.strMealThumb;
   img.alt = meal.strMeal;
 
-  // Title
+  
   document.getElementById("modalTitle").textContent = meal.strMeal;
 
-  // Category tag
+  
   document.getElementById("modalCategoryTag").textContent =
     meal.strCategory || "";
 
-  // Meta chips
+  
   const metaParts = [
     meal.strCategory && `🍽️ ${meal.strCategory}`,
     meal.strArea && `🌍 ${meal.strArea}`,
@@ -250,7 +213,6 @@ function populateModal(meal) {
     .map((p) => `<span>${p}</span>`)
     .join("");
 
-  // Ingredients — extract using a loop (indices 1–20)
   const ingredientList = document.getElementById("ingredientList");
   ingredientList.innerHTML = "";
   for (let i = 1; i <= 20; i++) {
@@ -263,11 +225,9 @@ function populateModal(meal) {
     }
   }
 
-  // Instructions
   document.getElementById("instructionsText").textContent =
     meal.strInstructions || "No instructions available.";
 
-  // YouTube link
   const ytLink = document.getElementById("youtubeLink");
   if (meal.strYoutube) {
     ytLink.href = meal.strYoutube;
@@ -290,9 +250,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
 
-/* ============================================================
-   State Display (loading / empty / error)
-   ============================================================ */
 function showState(type, message = "") {
   recipeGrid.innerHTML = "";
   updateResultsCount(0);
@@ -305,7 +262,7 @@ function showState(type, message = "") {
   } else if (type === "error") {
     stateBox.innerHTML = `<div class="state-emoji">⚠️</div><p class="state-msg">${message}</p>`;
   } else {
-    // default / initial
+  
     stateBox.innerHTML = `<div class="state-emoji">🔍</div><p class="state-msg">Search for a recipe above to get started!</p>`;
   }
 }
@@ -320,9 +277,6 @@ function updateResultsCount(n) {
     n > 0 ? `${n} recipe${n !== 1 ? "s" : ""} found` : "";
 }
 
-/* ============================================================
-   Back to Top
-   ============================================================ */
 window.addEventListener("scroll", () => {
   backToTop.classList.toggle("visible", window.scrollY > 400);
 });
@@ -331,9 +285,6 @@ backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-/* ============================================================
-   Init
-   ============================================================ */
 function init() {
   initTheme();
   loadCategories();

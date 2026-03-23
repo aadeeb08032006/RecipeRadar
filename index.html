@@ -8,7 +8,6 @@
   </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
       <div class="logo">
@@ -21,13 +20,11 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h1 class="hero-title">Discover<br /><em>Delicious</em> Recipes</h1>
       <p class="hero-sub">Search, filter, and explore thousands of meals from around the world.</p>
 
-      <!-- SEARCH BAR -->
       <div class="search-wrapper">
         <input
           type="text"
@@ -42,11 +39,9 @@
     <div class="hero-blob"></div>
   </section>
 
-  <!-- CONTROLS -->
   <section class="controls" id="controls">
     <div class="controls-inner">
 
-      <!-- CATEGORY FILTER -->
       <div class="control-group">
         <label for="categoryFilter" class="control-label">Filter by Category</label>
         <select id="categoryFilter" class="control-select">
@@ -54,7 +49,6 @@
         </select>
       </div>
 
-      <!-- SORT -->
       <div class="control-group">
         <label for="sortSelect" class="control-label">Sort</label>
         <select id="sortSelect" class="control-select">
@@ -64,26 +58,21 @@
         </select>
       </div>
 
-      <!-- RESULTS COUNT -->
       <div class="results-count" id="resultsCount"></div>
 
     </div>
   </section>
 
-  <!-- RECIPE GRID -->
   <main class="main">
     <div class="grid" id="recipeGrid">
-      <!-- Cards injected here -->
     </div>
 
-    <!-- EMPTY / LOADING STATE -->
     <div class="state-box" id="stateBox">
       <div class="state-emoji" id="stateEmoji">🔍</div>
       <p class="state-msg" id="stateMsg">Search for a recipe above to get started!</p>
     </div>
   </main>
 
-  <!-- MODAL OVERLAY -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal" id="modal">
       <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
@@ -112,7 +101,6 @@
     </div>
   </div>
 
-  <!-- BACK TO TOP -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <script src="app.js"></script>
